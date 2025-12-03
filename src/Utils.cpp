@@ -6,13 +6,13 @@
 #include <cctype>
 #include <random>
 #include <chrono>
+#include <limits>
 
 namespace {
     std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 }
 
 namespace Utils {
-    // Strings
     std::string toLower(const std::string& str) {
         std::string result = str;
         std::transform(result.begin(), result.end(), result.begin(),
@@ -31,10 +31,7 @@ namespace Utils {
         size_t start = str.find_first_not_of(" \t\n\r");
         size_t end = str.find_last_not_of(" \t\n\r");
         
-        if (start == std::string::npos) {
-            return "";
-        }
-        
+        if (start == std::string::npos) return "";
         return str.substr(start, end - start + 1);
     }
     
@@ -44,13 +41,12 @@ namespace Utils {
         std::string item;
         
         while (std::getline(ss, item, delimiter)) {
-            result.push_back(item);
+            result.push_back(trim(item));
         }
         
         return result;
     }
     
-    // Arquivos
     bool fileExists(const std::string& filename) {
         std::ifstream file(filename);
         return file.good();
@@ -58,9 +54,7 @@ namespace Utils {
     
     std::string readFile(const std::string& filename) {
         std::ifstream file(filename);
-        if (!file.is_open()) {
-            return "";
-        }
+        if (!file.is_open()) return "";
         
         std::stringstream buffer;
         buffer << file.rdbuf();
@@ -69,16 +63,13 @@ namespace Utils {
     
     bool writeFile(const std::string& filename, const std::string& content) {
         std::ofstream file(filename);
-        if (!file.is_open()) {
-            return false;
-        }
+        if (!file.is_open()) return false;
         
         file << content;
         file.close();
         return true;
     }
     
-    // Números
     int randomInt(int min, int max) {
         std::uniform_int_distribution<int> dist(min, max);
         return dist(rng);
@@ -94,7 +85,6 @@ namespace Utils {
         return dist(rng) <= probability;
     }
     
-    // Cores (ANSI escape codes)
     namespace Colors {
         const std::string RESET = "\033[0m";
         const std::string RED = "\033[31m";
@@ -108,7 +98,6 @@ namespace Utils {
         const std::string DIM = "\033[2m";
     }
     
-    // Interface
     void printColored(const std::string& text, const std::string& color) {
         std::cout << color << text << Colors::RESET << std::endl;
     }
@@ -134,7 +123,6 @@ namespace Utils {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     
-    // Barras de progresso
     std::string createProgressBar(int current, int max, int width, 
                                  const std::string& fill, 
                                  const std::string& empty) {
@@ -147,11 +135,8 @@ namespace Utils {
         
         std::string bar;
         for (int i = 0; i < width; i++) {
-            if (i < filledWidth) {
-                bar += fill;
-            } else {
-                bar += empty;
-            }
+            if (i < filledWidth) bar += fill;
+            else bar += empty;
         }
         
         return bar;
