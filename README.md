@@ -16,8 +16,7 @@ Os dados referentes aos Pokémon e seus movimentos são carregados a partir de
 arquivos texto, permitindo fácil expansão e modificação. O projeto tem como objetivo
 demonstrar alguns conceitos fundamentais de C++, que foram absorvidos durante a
 disciplina Programação e Desenvolvimento de software II DCC204, como por exemplo
-classes e métodos, encapsulamento, utilização de arquivos externos, e aaplica isso além de
-simulando um simples de combate baseado no universo Pokémon.
+classes e métodos, encapsulamento, utilização de arquivos externos, e aplica isso simulando um simples de combate baseado no universo Pokémon.
 Pré-requisitos
 
 Para compilar e executar o projeto PokéCode, é necessário possuir:
@@ -73,7 +72,7 @@ A organização de diretórios segue o padrão abaixo:
   ● Estrutura modularizada com arquivos de cabeçalho e implementação
   
   ● Arquivos externos em formato .txt para armazenamento de dados dos Pokémon e
-  ataques, como por emeplo o pokemon.txt
+  ataques, como por exemplo o pokemon.txt
   
   
   # Autores 
