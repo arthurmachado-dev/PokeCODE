@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <string>
-#include <vector>  // ADICIONAR ESTA LINHA
+#include <vector>  
 
 class Pokedex;
 class Trainer;
