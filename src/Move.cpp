@@ -6,9 +6,7 @@ Move::Move(int id, const std::string& name, const std::string& type,
     : id(id), name(name), type(type), category(category), power(power),
       accuracy(accuracy), maxPP(pp), currentPP(pp) {
     
-    if (maxPP <= 0) {
-        throw std::invalid_argument("PP deve ser maior que 0");
-    }
+    if (maxPP <= 0) maxPP = 1;
 }
 
 void Move::setCurrentPP(int pp) {
